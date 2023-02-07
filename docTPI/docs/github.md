@@ -1,4 +1,11 @@
-# Commandes GIT
+# Configuartion git
+La commande git config --global permet la configuration global de du compte git que l'on souhaite utiliser.
+```sh
+git config --global user.email
+git config --global user.name
+```
+
+# Commandes git
 
 Pour cloner un dépot git dans un répertoire souhaité, il y'a besoin d'avoir l'url du répertoire git souhaitant être cloné sur son répertoire.
 ```git
