@@ -266,6 +266,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#exemple-de-requete-sql-pour-inserer-des-donnees" class="md-nav__link">
+    Exemple de requête SQL pour insérer des données.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exemple-de-reuqete-sql-pour-modifier-des-donnees" class="md-nav__link">
     Exemple de reuqête SQL pour modifier des données.
   </a>
@@ -294,8 +301,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#requete-de-connexion-a-la-base-de-donnees" class="md-nav__link">
+    Requête de connexion à la base de données.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exemple-de-requete-pdo-pour-recuperer-des-donnees" class="md-nav__link">
     Exemple de requête PDO pour récupérer des données.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requete-sql-pour-inserer-des-donnees-en-pdo" class="md-nav__link">
+    Requête SQL pour insérer des données en PDO.
   </a>
   
 </li>
@@ -385,6 +406,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#exemple-de-requete-sql-pour-inserer-des-donnees" class="md-nav__link">
+    Exemple de requête SQL pour insérer des données.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exemple-de-reuqete-sql-pour-modifier-des-donnees" class="md-nav__link">
     Exemple de reuqête SQL pour modifier des données.
   </a>
@@ -413,8 +441,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#requete-de-connexion-a-la-base-de-donnees" class="md-nav__link">
+    Requête de connexion à la base de données.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exemple-de-requete-pdo-pour-recuperer-des-donnees" class="md-nav__link">
     Exemple de requête PDO pour récupérer des données.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requete-sql-pour-inserer-des-donnees-en-pdo" class="md-nav__link">
+    Requête SQL pour insérer des données en PDO.
   </a>
   
 </li>
@@ -464,10 +506,14 @@
 
 
 <h1 id="premiere-competence">Première compétence</h1>
-<p>Je sais utiliser un langage de gestion de données relationnelles (SQL). 
-Je sais également les appliquées à un langage de programmation (PHP).</p>
+<p>SQL est un langage de requête qui permet de récupérer, modifier, supprimer et créer des données dans une base de données.
+PHP Data Objects (PDO) est une extension PHP qui définit une interface pour accéder à une base de données depuis PHP.
+Les requêtes SQL et PDO sont très similaires, la seule différence est que PDO permet d'utiliser des variables dans les requêtes.</p>
 <h3 id="exemple-de-requete-sql-pour-recuperer-des-donnees">Exemple de requête SQL pour récupérer des données.</h3>
 <pre><code class="language-sql">SELECT * FROM users WHERE id = 1
+</code></pre>
+<h3 id="exemple-de-requete-sql-pour-inserer-des-donnees">Exemple de requête SQL pour insérer des données.</h3>
+<pre><code class="language-sql">INSERT INTO `users`(`firstname`, `lastname`) VALUES ('John', 'Doe')
 </code></pre>
 <h3 id="exemple-de-reuqete-sql-pour-modifier-des-donnees">Exemple de reuqête SQL pour modifier des données.</h3>
 <pre><code class="language-sql">UPDATE users SET name = 'John' WHERE id = 1
@@ -490,36 +536,69 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 </code></pre>
+<h3 id="requete-de-connexion-a-la-base-de-donnees">Requête de connexion à la base de données.</h3>
+<pre><code class="language-php">&lt;?php
+$host = 'localhost';
+$dbname = 'my_database';
+$username = 'root';
+$password = '';
+
+$pdo = new PDO(&quot;mysql:host=$host;dbname=$dbname&quot;, $username, $password);
+?&gt;
+</code></pre>
 <h3 id="exemple-de-requete-pdo-pour-recuperer-des-donnees">Exemple de requête PDO pour récupérer des données.</h3>
-<pre><code class="language-php">$sql = &quot;SELECT * FROM users WHERE id = 1&quot;;
+<pre><code class="language-php">&lt;?php
+
+$sql = &quot;SELECT * FROM users WHERE id = 1&quot;;
 $stmt= $pdo-&gt;prepare($sql);
 $stmt-&gt;execute();
 $result = $stmt-&gt;fetch();
+
+?&gt;
+</code></pre>
+<h3 id="requete-sql-pour-inserer-des-donnees-en-pdo">Requête SQL pour insérer des données en PDO.</h3>
+<pre><code class="language-php">&lt;?php
+  // Récupérer les valeurs 
+  $firstname = $_POST['firstname'];
+  $lastname = $_POST['lastname'];
+
+  // Requête mysql pour insérer des données
+  $sql = &quot;INSERT INTO `users`(`firstname`, `lastname`) VALUES (:firstname,:lastname)&quot;;
+  $res = $pdo-&gt;prepare($sql);
+  $exec = $res-&gt;execute(array(&quot;:firstname&quot;=&gt;$firstname,&quot;:lastname&quot;=&gt;$lastname));
+?&gt;
 </code></pre>
 <h3 id="exemple-de-requete-pdo-pour-modifier-des-donnees">Exemple de requête PDO pour modifier des données.</h3>
-<pre><code class="language-php">$data = [
+<pre><code class="language-php">&lt;?php
+$data = [
     'name' =&gt; 'John',
     'id' =&gt; 1,
 ];
 $sql = &quot;UPDATE users SET name = :name WHERE id = :id&quot;;
 $stmt= $pdo-&gt;prepare($sql);
 $stmt-&gt;execute($data);
+?&gt;
 </code></pre>
 <h3 id="exemple-de-requete-pdo-pour-supprimer-des-donnees">Exemple de requête PDO pour supprimer des données.</h3>
-<pre><code class="language-php">$data = [
+<pre><code class="language-php">&lt;?php
+$data = [
     'id' =&gt; 1,
 ];
 $sql = &quot;DELETE FROM users WHERE id = :id&quot;;
 $stmt= $pdo-&gt;prepare($sql);
 $stmt-&gt;execute($data);
+?&gt;
 </code></pre>
 <h3 id="exemple-de-requete-pdo-pour-creer-une-base-de-donnees">Exemple de requête PDO pour créer une base de données.</h3>
-<pre><code class="language-php">$sql = &quot;CREATE DATABASE IF NOT EXISTS `my_database` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;;
+<pre><code class="language-php">&lt;?php
+$sql = &quot;CREATE DATABASE IF NOT EXISTS `my_database` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;;
 $stmt= $pdo-&gt;prepare($sql);
 $stmt-&gt;execute();
+?&gt;
 </code></pre>
 <h3 id="exemple-de-requete-pdo-pour-creer-une-table">Exemple de requête PDO pour créer une table.</h3>
-<pre><code class="language-php">$sql = &quot;CREATE DATABASE IF NOT EXISTS `my_database` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+<pre><code class="language-php">&lt;?php
+$sql = &quot;CREATE DATABASE IF NOT EXISTS `my_database` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `my_database`;
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -531,6 +610,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;&quot;;
 $stmt= $pdo-&gt;prepare($sql);
 $stmt-&gt;execute();
+?&gt;
 </code></pre>
 
 
