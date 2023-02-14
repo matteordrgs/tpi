@@ -2,16 +2,16 @@
 
 > Domaine : PHP
 
-> Compétences : 
-> - MySQL (requêtes)
-> - Framework ( type Bootstrap )
-> - Fonctions PHP
-> - Organisation et structuration du code
+> Compétences :  
+> - MySQL (requêtes)  
+> - Framework ( type Bootstrap )  
+> - Fonctions PHP  
+> - Organisation et structuration du code  
 > - 
 
-> Points Faibles : 
-> - Gestion du temps
-> - JavaScript
-> - Sessions
-> - Planification
-> - Programmation orienté objet
+> Points Faibles :  
+> - Gestion du temps  
+> - JavaScript  
+> - Sessions  
+> - Planification  
+> - Programmation orienté objet  
